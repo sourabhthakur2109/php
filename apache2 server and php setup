@@ -1,0 +1,63 @@
+setup of an apache2 server on debain 
+
+dpkg -l | grep apache2
+apt install apach2
+systemctl restart apache2.service
+systemctl enable apache2.service 
+netstat -nltup 
+
+
+
+INSTALL PHP 
+
+apt install php7.4 php7.4-common php7.4-curl  php7.4-cli php7.4-mysql php7.4-xmlrpc
+
+ vim /etc/php/7.4/apache2/php.ini 
+
+max_upload_size- 2048M
+memory_limit-512M
+max_execution time - 500
+max_input_vars- 10000
+post_size-2048M
+allow_url_fopen-On
+
+
+cd /var/www/html/
+
+vim phpinfo.php
+
+<?php
+phpinfo();
+?>
+
+
+MYSQL 
+
+https://computingforgeeks.com/how-to-install-mysql-on-debian-linux-system/
+
+
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
+apt install ./mysql-apt-config_0.8.22-1_all.deb
+apt install mysql-community-server
+
+service mysql status 
+
+mysql -u root -p 
+
+cd /var/www/html/
+mkdir php
+chmod -R 755 php
+chown  -R www-data:www-data php
+
+
+PHPMYADMIN
+
+Download the phpmyadmin 
+https://www.phpmyadmin.net/
+
+unzip this folder 
+
+mv phpmyadmin /var/www/html/phpmyadmin
+
+chmod -R 755 phpmyadmin
+chown  -R www-data:www-data phpmyadmin
